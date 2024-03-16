@@ -8,22 +8,23 @@ const AddProduct = () => {
 
   async function addProductHandle(e) {
     e.preventDefault();
-    console.warn(name, description, price, file);
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("image", file);
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
 
+    //console.log(formData);
     let result = await fetch("http://127.0.0.1:8000/api/add-products", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: formData,
     });
 
-    alert("Data has been saved");
+    if (result.status === 201) {
+      alert("Data has been saved");
+    } else {
+      alert("Error");
+    }
   }
 
   return (
@@ -72,12 +73,14 @@ const AddProduct = () => {
           </label>
           <input
             type="file"
-            onChange={(e) => setFile(e.target.value)}
+            onChange={(e) => setFile(e.target.files[0])}
             className="form-control"
             id="p_image"
           />
         </div>
-        <button className="btn btn-primary">Register</button>
+        <button type="submit" className="btn btn-primary">
+          Add Product
+        </button>
       </form>
     </div>
   );
