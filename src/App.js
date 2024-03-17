@@ -18,7 +18,9 @@ function App() {
         <div className="container">
           <Routes>
             <Route element={<ProtectedRoutes />}>
-              <Route path="/" element={<ProductList/>}>Home</Route>
+              <Route path="/" element={<ProductList />}>
+                Home
+              </Route>
             </Route>
             <Route element={<ProtectedRoutes />}>
               <Route path="/add" element={<AddProduct />}>
@@ -26,7 +28,7 @@ function App() {
               </Route>
             </Route>
             <Route element={<ProtectedRoutes />}>
-              <Route path="/update" element={<UpdateProduct />}>
+              <Route path="/update/:id" element={<UpdateProduct />}>
                 Update
               </Route>
             </Route>

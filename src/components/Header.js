@@ -42,11 +42,6 @@ const Header = () => {
                       Add Product
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/update">
-                      Update Product
-                    </Link>
-                  </li>
                 </>
               ) : (
                 <>
@@ -87,7 +82,11 @@ const Header = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="dropdown-item" onClick={logoutHandle}>
+                      <a
+                        href="#"
+                        className="dropdown-item"
+                        onClick={logoutHandle}
+                      >
                         Logout
                       </a>
                     </li>
