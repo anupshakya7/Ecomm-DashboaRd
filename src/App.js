@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { useEffect } from "react";
 import ProtectedRoutes from "./Services/ProtectedRoutes";
+import ProductList from "./components/ProductList";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route element={<ProtectedRoutes />}>
-              <Route path="/">Home</Route>
+              <Route path="/" element={<ProductList/>}>Home</Route>
             </Route>
             <Route element={<ProtectedRoutes />}>
               <Route path="/add" element={<AddProduct />}>

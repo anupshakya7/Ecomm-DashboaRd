@@ -14,7 +14,7 @@ const Header = () => {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/">
             Navbar
           </Link>
           <button
@@ -34,7 +34,7 @@ const Header = () => {
                 <>
                   <li className="nav-item">
                     <Link className="nav-link" to="/">
-                      Home
+                      Products
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -87,7 +87,7 @@ const Header = () => {
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" onClick={logoutHandle}>
+                      <a href="#" className="dropdown-item" onClick={logoutHandle}>
                         Logout
                       </a>
                     </li>

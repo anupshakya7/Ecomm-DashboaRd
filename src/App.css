@@ -27,6 +27,9 @@
 .App-link {
   color: #61dafb;
 }
+.navbar-expand-lg .navbar-nav .dropdown-menu{
+  left:-60px;
+}
 
 @keyframes App-logo-spin {
   from {
