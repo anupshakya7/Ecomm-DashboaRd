@@ -4,6 +4,10 @@ import { useParams } from "react-router-dom";
 const UpdateProduct = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
+  const [name,setName] = useState("");
+  const [description,setDescription] = useState("");
+  const [price,setPrice] = useState("");
+  const [file,setFile] = useState("");
 
   useEffect(() => {
     getFetch();
@@ -13,11 +17,32 @@ const UpdateProduct = () => {
     let result = await fetch("http://127.0.0.1:8000/api/get-product/" + id);
     result = await result.json();
     setData(result);
+    setName(result.name);
+    setDescription(result.description);
+    setPrice(result.price);
+    setFile(result.file);
+  }
+
+  async function updateHandle(e){
+    e.preventDefault()
+    const formData = new FormData();
+    formData.append('image',file);
+    formData.append('name',name);
+    formData.append('price',price);
+    formData.append('description',description);
+    let result = await fetch('http://127.0.0.1:8000/api/update-products/'+data.id+'?_method=PUT',{
+      method:"POST",
+      body:formData
+    });
+
+    alert("Updated Successfully");
+
+    
   }
   return (
     <div className="card mt-4 p-3 text-start">
       <h1>Update Product Page</h1>
-      <form>
+      <form onSubmit={updateHandle}>
         <div className="mb-3">
           <label htmlFor="p_name" className="form-label">
             Product Name
@@ -25,6 +50,7 @@ const UpdateProduct = () => {
           <input
             type="text"
             className="form-control"
+            onChange={(e)=>setName(e.target.value)}
             defaultValue={data.name}
             placeholder="Enter Product Name"
             id="p_name"
@@ -36,6 +62,7 @@ const UpdateProduct = () => {
           </label>
           <input
             type="text"
+            onChange={(e)=>setDescription(e.target.value)}
             defaultValue={data.description}
             className="form-control"
             placeholder="Enter Product Description"
@@ -48,6 +75,7 @@ const UpdateProduct = () => {
           </label>
           <input
             type="text"
+            onChange={(e)=>setPrice(e.target.value)}
             defaultValue={data.price}
             className="form-control"
             placeholder="Enter Product Price"
@@ -59,6 +87,7 @@ const UpdateProduct = () => {
             Product Image
           </label>
           <input
+            onChange={(e)=>setFile(e.target.files[0])}
             defaultValue={data.file_path}
             type="file"
             className="form-control"

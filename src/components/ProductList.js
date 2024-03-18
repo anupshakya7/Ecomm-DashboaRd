@@ -25,9 +25,26 @@ const ProductList = () => {
       console.error(e);
     }
   }
+
+  async function search(key){
+    if(key !== ""){
+        let result = await fetch("http://127.0.0.1:8000/api/search/"+key)
+        result = await result.json();
+        setData(result);
+    }else{
+        fetchProduct();
+    }
+  }
   return (
     <div className="card p-4 mt-4 shadow">
       <h2>Product List</h2>
+      <input
+            type="text"
+            className="form-control"
+            onChange={(e)=>search(e.target.value)}
+            placeholder="Search Product..."
+            id="p_name"
+          />
       <table className="table table-bordered mt-3 align-middle">
         <thead>
           <tr className="table-dark">
@@ -36,7 +53,7 @@ const ProductList = () => {
             <th style={{ width: "200px" }}>Image</th>
             <th style={{ width: "500px" }}>Description</th>
             <th style={{ width: "150px" }}>Price</th>
-            <th style={{ width: "200px" }}>Action</th>
+            <th style={{ width: "250px" }}>Action</th>
           </tr>
         </thead>
         <tbody>
